@@ -1,23 +1,16 @@
 import React from "react"
-import { z } from "zod"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { DottedSeparator } from "@/components/dotted-separator"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
-import Link from "next/link"
-
-const signInSchema = z.object({
-   email: z.string().email({ message: "E-mail inválido" }),
-   password: z.string().min(1, { message: "Obrigatório" })
-})
-
-type SignInSchema = z.infer<typeof signInSchema>
+import { SignInSchema, signInSchema } from "@/features/auth/schemas"
 
 export const SignInCard = () => {
    const form = useForm<SignInSchema>({
