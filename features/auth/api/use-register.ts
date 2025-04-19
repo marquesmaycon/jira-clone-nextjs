@@ -1,7 +1,7 @@
+import { useMutation } from "@tanstack/react-query"
 import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
-import { useMutation } from "@tanstack/react-query"
 
 type RegisterRequest = (typeof client.api.auth.register)["$post"]
 type RequestType = InferRequestType<RegisterRequest>
