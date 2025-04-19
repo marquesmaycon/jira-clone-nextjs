@@ -12,7 +12,11 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { SignInSchema, signInSchema } from "@/features/auth/schemas"
 
+import { useLogin } from "../api/use-login"
+
 export const SignInCard = () => {
+   const { mutate: login } = useLogin()
+
    const form = useForm<SignInSchema>({
       resolver: zodResolver(signInSchema),
       defaultValues: {
@@ -22,7 +26,7 @@ export const SignInCard = () => {
    })
 
    const onSubmit = async (data: SignInSchema) => {
-      console.log(data)
+      login({ json: data })
    }
 
    return (
