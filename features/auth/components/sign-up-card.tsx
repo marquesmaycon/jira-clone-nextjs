@@ -1,26 +1,21 @@
 import React from "react"
 import Link from "next/link"
-import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FcGoogle } from "react-icons/fc"
 import { FaGithub } from "react-icons/fa"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
 import { DottedSeparator } from "@/components/dotted-separator"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
-
-const signUpSchema = z.object({
-   name: z.string().min(3, { message: "Obrigatório" }),
-   email: z.string().email({ message: "E-mail inválido" }),
-   password: z.string().min(8, { message: "Senha deve ter pelo menos 8 caracteres" })
-})
-
-type SignUpSchema = z.infer<typeof signUpSchema>
+import { signUpSchema, SignUpSchema } from "@/features/auth/schemas"
+import { useRegister } from "@/features/auth/api/use-register"
 
 export const SignUpCard = () => {
+   const { mutate: register } = useRegister()
+
    const form = useForm<SignUpSchema>({
       resolver: zodResolver(signUpSchema),
       defaultValues: {
@@ -31,7 +26,7 @@ export const SignUpCard = () => {
    })
 
    const onSubmit = async (data: SignUpSchema) => {
-      console.log(data)
+      register({ json: data })
    }
 
    return (
