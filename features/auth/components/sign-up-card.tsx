@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -88,7 +89,7 @@ export const SignUpCard = () => {
                   />
 
                   <Button type="submit" size="lg" className="w-full">
-                     Sign Up
+                     Register
                   </Button>
                </form>
             </Form>
