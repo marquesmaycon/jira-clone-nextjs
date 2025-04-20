@@ -6,6 +6,7 @@ import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { ImageIcon } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 import {
    Form,
@@ -160,6 +161,7 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                            variant="secondary"
                            disabled={isPending}
                            onClick={onCancel}
+                           className={cn(!onCancel && "invisible")}
                         >
                            Cancel
                         </Button>
