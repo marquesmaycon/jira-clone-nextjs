@@ -1,0 +1,7 @@
+import { z } from "zod"
+
+export const createWorkspaceSchema = z.object({
+   name: z.string().min(1, "Name is required").trim()
+})
+
+export type CreateWorkspaceSchema = z.infer<typeof createWorkspaceSchema>
