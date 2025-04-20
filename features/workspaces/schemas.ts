@@ -1,7 +1,13 @@
 import { z } from "zod"
 
 export const createWorkspaceSchema = z.object({
-   name: z.string().min(1, "Name is required").trim()
+   name: z.string().min(1, "Name is required").trim(),
+   image: z
+      .union([
+         z.instanceof(File),
+         z.string().transform((val) => (val === "" ? undefined : val))
+      ])
+      .optional()
 })
 
 export type CreateWorkspaceSchema = z.infer<typeof createWorkspaceSchema>

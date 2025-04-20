@@ -1,11 +1,11 @@
 "use client"
 
+import { useRef } from "react"
+import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { ImageIcon } from "lucide-react"
 
-import { CreateWorkspaceSchema, createWorkspaceSchema } from "../schemas"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { DottedSeparator } from "@/components/dotted-separator"
 import {
    Form,
    FormControl,
@@ -14,25 +14,53 @@ import {
    FormLabel,
    FormMessage
 } from "@/components/ui/form"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { DottedSeparator } from "@/components/dotted-separator"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+
 import { useCreateWorkspace } from "../api/use-create-workspace"
+import { CreateWorkspaceSchema, createWorkspaceSchema } from "../schemas"
 
 type CreateWorkspaceFormProps = {
    onCancel?: () => void
 }
 
-export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
+export const CreateWorkspaceForm = ({}: CreateWorkspaceFormProps) => {
    const { mutate, isPending } = useCreateWorkspace()
+
+   const inputRef = useRef<HTMLInputElement>(null)
 
    const form = useForm<CreateWorkspaceSchema>({
       resolver: zodResolver(createWorkspaceSchema),
       defaultValues: {
-         name: ""
+         name: "",
+         image: undefined
       }
    })
+
    const onSubmit = (data: CreateWorkspaceSchema) => {
-      mutate({ json: data })
+      const finalValues = {
+         ...data,
+         image: data.image instanceof File ? data.image : ""
+      }
+
+      mutate(
+         { form: finalValues },
+         {
+            onSuccess: () => {
+               form.reset()
+            }
+         }
+      )
+   }
+
+   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0]
+      if (file) {
+         form.setValue("image", file)
+      }
    }
 
    return (
@@ -63,6 +91,62 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
                               </FormControl>
                               <FormMessage />
                            </FormItem>
+                        )}
+                     />
+                     <FormField
+                        control={form.control}
+                        name="image"
+                        render={({ field }) => (
+                           <div className="flex flex-col gap-y-2">
+                              <div className="flex items-center gap-x-5">
+                                 {field.value ? (
+                                    <div className="relative size-18 overflow-hidden rounded-md">
+                                       <Image
+                                          src={
+                                             field.value instanceof File
+                                                ? URL.createObjectURL(
+                                                     field.value
+                                                  )
+                                                : field.value
+                                          }
+                                          fill
+                                          alt="Workspace Image"
+                                          className="object-cover"
+                                       />
+                                    </div>
+                                 ) : (
+                                    <Avatar className="size-18">
+                                       <AvatarFallback>
+                                          <ImageIcon className="size-9 text-neutral-400" />
+                                       </AvatarFallback>
+                                    </Avatar>
+                                 )}
+                                 <div className="flex flex-col">
+                                    <p className="text-sm">Workspace Icon</p>
+                                    <p className="text-muted-foreground text-sm">
+                                       JPG, SVG, PNG or JPEG, max 1mb
+                                    </p>
+                                    <input
+                                       type="file"
+                                       className="hidden"
+                                       accept=".jpg,.png,.svg,.jpeg"
+                                       ref={inputRef}
+                                       disabled={isPending}
+                                       onChange={handleImageChange}
+                                    />
+                                    <Button
+                                       type="button"
+                                       disabled={isPending}
+                                       variant="teritary"
+                                       size="xs"
+                                       className="mt-2 w-fit"
+                                       onClick={() => inputRef.current?.click()}
+                                    >
+                                       Upload Image
+                                    </Button>
+                                 </div>
+                              </div>
+                           </div>
                         )}
                      />
                      <DottedSeparator className="py-7" />
