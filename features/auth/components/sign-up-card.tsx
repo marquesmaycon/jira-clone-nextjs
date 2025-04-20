@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -14,7 +15,7 @@ import { signUpSchema, SignUpSchema } from "@/features/auth/schemas"
 import { useRegister } from "@/features/auth/api/use-register"
 
 export const SignUpCard = () => {
-   const { mutate: register } = useRegister()
+   const { mutate: register, isPending } = useRegister()
 
    const form = useForm<SignUpSchema>({
       resolver: zodResolver(signUpSchema),
@@ -87,8 +88,8 @@ export const SignUpCard = () => {
                      )}
                   />
 
-                  <Button type="submit" size="lg" className="w-full">
-                     Sign Up
+                  <Button type="submit" size="lg" className="w-full" disabled={isPending}>
+                     Register
                   </Button>
                </form>
             </Form>

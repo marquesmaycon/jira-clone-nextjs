@@ -1,4 +1,5 @@
-import React from "react"
+"use client"
+
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -15,7 +16,7 @@ import { SignInSchema, signInSchema } from "@/features/auth/schemas"
 import { useLogin } from "../api/use-login"
 
 export const SignInCard = () => {
-   const { mutate: login } = useLogin()
+   const { mutate: login, isPending } = useLogin()
 
    const form = useForm<SignInSchema>({
       resolver: zodResolver(signInSchema),
@@ -66,7 +67,7 @@ export const SignInCard = () => {
                      )}
                   />
 
-                  <Button type="submit" size="lg" className="w-full">
+                  <Button type="submit" size="lg" className="w-full" disabled={isPending}>
                      Login
                   </Button>
                </form>
