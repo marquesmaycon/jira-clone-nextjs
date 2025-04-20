@@ -1,11 +1,12 @@
 import "server-only"
 
 import { Account, Client } from "node-appwrite"
+import { APPWRITE_ENDPOINT, APPWRITE_PROJECT } from "@/config"
 
 export async function createAdminClient() {
    const client = new Client()
-      .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
-      .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
+      .setEndpoint(APPWRITE_ENDPOINT)
+      .setProject(APPWRITE_PROJECT)
       .setKey(process.env.NEXT_APPWRITE_KEY!)
 
    return {
