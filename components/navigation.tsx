@@ -1,7 +1,17 @@
-import { cn } from "@/lib/utils"
-import { SettingsIcon, UserIcon } from "lucide-react"
+"use client"
+
 import Link from "next/link"
-import { GoCheckCircle, GoCheckCircleFill, GoHome, GoHomeFill } from "react-icons/go"
+import { usePathname } from "next/navigation"
+import { SettingsIcon, UserIcon } from "lucide-react"
+import {
+   GoCheckCircle,
+   GoCheckCircleFill,
+   GoHome,
+   GoHomeFill
+} from "react-icons/go"
+
+import { cn } from "@/lib/utils"
+import { useWorkspaceId } from "@/features/workspaces/hooks/user-workspace-id"
 
 const routes = [
    {
@@ -31,18 +41,22 @@ const routes = [
 ]
 
 export const Navigation = () => {
+   const workspaceId = useWorkspaceId()
+   const pathname = usePathname()
    return (
       <ul>
          {routes.map(({ label, href, activeIcon, icon }) => {
-            const isActive = false
+            const fullHref = `/workspaces/${workspaceId}${href}`
+            const isActive = pathname === fullHref
             const Icon = isActive ? activeIcon : icon
             return (
                <li key={label}>
-                  <Link href={href}>
+                  <Link href={fullHref}>
                      <div
                         className={cn(
-                           "flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-primary transition text-neutral-500",
-                           isActive && "bg-white shadow-sm hover:opacity-100 text-primary"
+                           "hover:text-primary flex items-center gap-2.5 rounded-md p-2.5 font-medium text-neutral-500 transition",
+                           isActive &&
+                              "text-primary bg-white shadow-sm hover:opacity-100"
                         )}
                      >
                         <Icon className="size-5 text-neutral-500" />
