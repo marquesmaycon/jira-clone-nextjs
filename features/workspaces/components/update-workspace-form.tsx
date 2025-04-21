@@ -58,9 +58,6 @@ export const UpdateWorkspaceForm = ({
       }
    })
 
-   console.log(form.formState.errors)
-   console.log(form.watch("image"))
-
    const handleDelete = async () => {
       const confirmed = await confirmDelete()
 

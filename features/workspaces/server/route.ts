@@ -111,7 +111,7 @@ const app = new Hono()
             return c.json({ message: "Unauthorized" }, 404)
          }
 
-         let uploadedImageUrl: string | undefined
+         let uploadedImageUrl: string | null | undefined
 
          if (image instanceof File) {
             const file = await storage.createFile(

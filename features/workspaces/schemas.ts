@@ -13,13 +13,15 @@ export const createWorkspaceSchema = z.object({
 export type CreateWorkspaceSchema = z.infer<typeof createWorkspaceSchema>
 
 export const updateWorkspaceSchema = z.object({
-   name: z.string().min(1, "Must be 1 or more characters").trim().optional(),
+   name: z.string().trim().min(1, "Must be 1 or more characters").optional(),
    image: z
       .union([
          z.instanceof(File),
-         z.string().transform((val) => (val === "" ? undefined : val))
+         z
+            .string()
+            .transform((val) => (val === null || val === "" ? undefined : val))
       ])
-      .optional()
+      .nullish()
 })
 
 export type UpdateWorkspaceSchema = z.infer<typeof updateWorkspaceSchema>
