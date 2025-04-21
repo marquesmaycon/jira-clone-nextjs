@@ -9,13 +9,17 @@ const buttonVariants = cva(
    {
       variants: {
          variant: {
-            primary: "bg-gradient-to-b from-blue-600 to-blue-700 text-primary-foreground hover:from-blue-700 hover:to-blue-700",
-            destructive: "bg-gradient-to-b from-amber-600 to-amber-700 text-primary-foreground hover:from-amber-700 hover:to-amber-700",
-            outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+            primary:
+               "bg-gradient-to-b from-blue-600 to-blue-700 text-primary-foreground hover:from-blue-700 hover:to-blue-700",
+            destructive:
+               "bg-gradient-to-b from-amber-600 to-amber-700 text-primary-foreground hover:from-amber-700 hover:to-amber-700",
+            outline:
+               "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
             secondary: "bg-white text-black hover:bg-neutral-100",
             ghost: "border-transparent shadow-none hover:bg-accent hover:text-accent-foreground",
             muted: "bg-netral-200 text-neutral-600 hover:bg-neutral-200/80",
-            teritary: "bg-blue-100 text-blue-600 border-transparent hover:bg-blue-200 shadow-none"
+            teritary:
+               "bg-blue-100 text-blue-600 border-transparent hover:bg-blue-200 shadow-none"
          },
          size: {
             default: "h-10 px-4 py-2 has-[>svg]:px-3",
@@ -32,6 +36,11 @@ const buttonVariants = cva(
    }
 )
 
+type ButtonProps = React.ComponentProps<"button"> &
+   VariantProps<typeof buttonVariants> & {
+      asChild?: boolean
+   }
+
 function Button({
    className,
    variant,
@@ -44,7 +53,13 @@ function Button({
    }) {
    const Comp = asChild ? Slot : "button"
 
-   return <Comp data-slot="button" className={cn(buttonVariants({ variant, size, className }))} {...props} />
+   return (
+      <Comp
+         data-slot="button"
+         className={cn(buttonVariants({ variant, size, className }))}
+         {...props}
+      />
+   )
 }
 
-export { Button, buttonVariants }
+export { Button, buttonVariants, type ButtonProps }

@@ -4,34 +4,33 @@ import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
 
-type UpdateWorkspaceRequest =
-   (typeof client.api.workspaces)[":workspaceId"]["$patch"]
-type RequestType = InferRequestType<UpdateWorkspaceRequest>
-type ResponseType = InferResponseType<UpdateWorkspaceRequest, 200>
+type DeleteWorkspaceRequest =
+   (typeof client.api.workspaces)[":workspaceId"]["$delete"]
+type RequestType = InferRequestType<DeleteWorkspaceRequest>
+type ResponseType = InferResponseType<DeleteWorkspaceRequest, 200>
 
-export const useUpdateWorkspace = () => {
+export const useDeleteWorkspace = () => {
    const queryClient = useQueryClient()
 
    return useMutation<ResponseType, Error, RequestType>({
-      mutationFn: async ({ form, param }) => {
-         const res = await client.api.workspaces[":workspaceId"].$patch({
-            form,
+      mutationFn: async ({ param }) => {
+         const res = await client.api.workspaces[":workspaceId"].$delete({
             param
          })
 
          if (!res.ok) {
-            throw new Error("Failed to update workspace")
+            throw new Error("Failed to delete workspace")
          }
 
          return await res.json()
       },
       onSuccess: ({ data }) => {
-         toast.success("Workspace updated successfully")
+         toast.success("Workspace deleted successfully")
          queryClient.invalidateQueries({ queryKey: ["workspaces"] })
          queryClient.invalidateQueries({ queryKey: ["workspace", data.$id] })
       },
       onError: () => {
-         toast.error("Error updating workspace")
+         toast.error("Error deleting workspace")
       }
    })
 }
