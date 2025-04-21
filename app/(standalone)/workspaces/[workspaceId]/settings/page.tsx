@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 
-import { getCurrent } from "@/features/auth/actions"
+import { getCurrent } from "@/features/auth/queries"
 import { UpdateWorkspaceForm } from "@/features/workspaces/components/update-workspace-form"
 import { getWorkspace } from "@/features/workspaces/actions"
 import React from "react"
