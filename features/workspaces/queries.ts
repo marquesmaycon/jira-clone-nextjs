@@ -1,35 +1,15 @@
-import { cookies } from "next/headers"
-import { Account, Client, Databases, Query } from "node-appwrite"
+import { Query } from "node-appwrite"
 
-import {
-   APPWRITE_ENDPOINT,
-   APPWRITE_PROJECT,
-   DATABASE_ID,
-   MEMBERS_ID,
-   WORKSPACES_ID
-} from "@/config"
+import { DATABASE_ID, MEMBERS_ID, WORKSPACES_ID } from "@/config"
 
-import { AUTH_COOKIE } from "../auth/constants"
 import { getMember } from "../members/utils"
 import { Workspace } from "./types"
+import { createSessionClient } from "@/lib/appwrite"
 
 export const getWorkspaces = async () => {
    try {
-      const appCookies = await cookies()
-      const session = appCookies.get(AUTH_COOKIE)
+      const { account, databases } = await createSessionClient()
 
-      if (!session) {
-         return { documents: [], total: 0 }
-      }
-
-      const client = new Client()
-         .setEndpoint(APPWRITE_ENDPOINT)
-         .setProject(APPWRITE_PROJECT)
-
-      client.setSession(session.value)
-
-      const databases = new Databases(client)
-      const account = new Account(client)
       const user = await account.get()
 
       const members = await databases.listDocuments(DATABASE_ID, MEMBERS_ID, [
@@ -49,7 +29,7 @@ export const getWorkspaces = async () => {
       )
       return workspaces
    } catch {
-      return null
+      return { documents: [], total: 0 }
    }
 }
 
@@ -59,21 +39,8 @@ export const getWorkspace = async ({
    workspaceId: string
 }) => {
    try {
-      const appCookies = await cookies()
-      const session = appCookies.get(AUTH_COOKIE)
+      const { account, databases } = await createSessionClient()
 
-      if (!session) {
-         return null
-      }
-
-      const client = new Client()
-         .setEndpoint(APPWRITE_ENDPOINT)
-         .setProject(APPWRITE_PROJECT)
-
-      client.setSession(session.value)
-
-      const databases = new Databases(client)
-      const account = new Account(client)
       const user = await account.get()
 
       const member = await getMember({
@@ -91,6 +58,7 @@ export const getWorkspace = async ({
          WORKSPACES_ID,
          workspaceId
       )
+
       return workspace
    } catch {
       return null
