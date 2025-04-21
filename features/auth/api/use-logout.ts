@@ -5,7 +5,9 @@ import type { InferResponseType } from "hono"
 import { client } from "@/lib/rpc"
 import { useRouter } from "next/navigation"
 
-type LogoutRequest = (typeof client.api.auth.logout)["$post"]
+const logoutRequest = client.api.auth.logout.$post
+
+type LogoutRequest = typeof logoutRequest
 type ResponseType = InferResponseType<LogoutRequest>
 
 export const useLogout = () => {
@@ -14,7 +16,7 @@ export const useLogout = () => {
 
    return useMutation<ResponseType>({
       mutationFn: async () => {
-         const res = await client.api.auth.logout.$post()
+         const res = await logoutRequest()
 
          if (!res.ok) {
             throw new Error("Failed logging out")

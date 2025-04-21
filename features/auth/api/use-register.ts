@@ -5,7 +5,9 @@ import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
 
-type RegisterRequest = (typeof client.api.auth.register)["$post"]
+const registerRequest = client.api.auth.register.$post
+
+type RegisterRequest = typeof registerRequest
 type RequestType = InferRequestType<RegisterRequest>
 type ResponseType = InferResponseType<RegisterRequest>
 
@@ -15,7 +17,7 @@ export const useRegister = () => {
 
    return useMutation<ResponseType, Error, RequestType>({
       mutationFn: async ({ json }) => {
-         const res = await client.api.auth.register.$post({ json })
+         const res = await registerRequest({ json })
 
          if (!res.ok) {
             throw new Error("Error registering")

@@ -5,10 +5,9 @@ import type { InferRequestType, InferResponseType } from "hono"
 import { client } from "@/lib/rpc"
 
 const resetInviteCodeRequest =
-   client.api.workspaces[":workspaceId"]["reset-invite-code"]["$post"]
+   client.api.workspaces[":workspaceId"]["reset-invite-code"].$post
 
 type ResetInviteCodeRequest = typeof resetInviteCodeRequest
-
 type RequestType = InferRequestType<ResetInviteCodeRequest>
 type ResponseType = InferResponseType<ResetInviteCodeRequest, 200>
 

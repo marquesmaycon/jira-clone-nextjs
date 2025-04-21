@@ -4,7 +4,9 @@ import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
 
-type CreateWorkspaceRequest = (typeof client.api.workspaces)["$post"]
+const createWorkspaceRequest = client.api.workspaces.$post
+
+type CreateWorkspaceRequest = typeof createWorkspaceRequest
 type RequestType = InferRequestType<CreateWorkspaceRequest>
 type ResponseType = InferResponseType<CreateWorkspaceRequest>
 
@@ -13,7 +15,7 @@ export const useCreateWorkspace = () => {
 
    return useMutation<ResponseType, Error, RequestType>({
       mutationFn: async ({ form }) => {
-         const res = await client.api.workspaces.$post({ form })
+         const res = await createWorkspaceRequest({ form })
 
          if (!res.ok) {
             throw new Error("Failed to create workspace")

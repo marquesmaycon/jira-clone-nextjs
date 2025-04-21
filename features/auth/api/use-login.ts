@@ -5,7 +5,9 @@ import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
 
-type LoginRequest = (typeof client.api.auth.login)["$post"]
+const loginRequest = client.api.auth.login.$post
+
+type LoginRequest = typeof loginRequest
 type RequestType = InferRequestType<LoginRequest>
 type ResponseType = InferResponseType<LoginRequest>
 
@@ -15,7 +17,7 @@ export const useLogin = () => {
 
    return useMutation<ResponseType, Error, RequestType>({
       mutationFn: async ({ json }) => {
-         const res = await client.api.auth.login.$post({ json })
+         const res = await loginRequest({ json })
 
          if (!res.ok) {
             throw new Error("Failed logging in")

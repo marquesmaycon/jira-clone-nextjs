@@ -4,8 +4,9 @@ import type { InferRequestType, InferResponseType } from "hono"
 
 import { client } from "@/lib/rpc"
 
-type UpdateWorkspaceRequest =
-   (typeof client.api.workspaces)[":workspaceId"]["$patch"]
+const updateWorkspaceRequest = client.api.workspaces[":workspaceId"].$patch
+
+type UpdateWorkspaceRequest = typeof updateWorkspaceRequest
 type RequestType = InferRequestType<UpdateWorkspaceRequest>
 type ResponseType = InferResponseType<UpdateWorkspaceRequest, 200>
 
@@ -14,10 +15,7 @@ export const useUpdateWorkspace = () => {
 
    return useMutation<ResponseType, Error, RequestType>({
       mutationFn: async ({ form, param }) => {
-         const res = await client.api.workspaces[":workspaceId"].$patch({
-            form,
-            param
-         })
+         const res = await updateWorkspaceRequest({ form, param })
 
          if (!res.ok) {
             throw new Error("Failed to update workspace")
