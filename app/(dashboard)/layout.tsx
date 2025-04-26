@@ -1,11 +1,13 @@
 import { Navbar } from "@/components/navbar"
 import { Sidebar } from "@/components/sidebar"
+import { CreateProjectModal } from "@/features/projects/components/create-project-modal"
 import { CreateWorkspaceModal } from "@/features/workspaces/components/create-workspace-modal"
 
 export default function DashboardLayout({ children }: React.PropsWithChildren) {
    return (
       <div className="min-h-screen">
          <CreateWorkspaceModal />
+         <CreateProjectModal />
          <div className="flex h-full w-full">
             <div className="fixed top-0 left-0 hidden h-full overflow-y-auto lg:block lg:w-[264px]">
                <Sidebar />
