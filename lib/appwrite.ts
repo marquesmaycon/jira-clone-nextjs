@@ -1,5 +1,5 @@
 import { cookies } from "next/headers"
-import { Account, Client, Databases } from "node-appwrite"
+import { Account, Client, Databases, Users } from "node-appwrite"
 import "server-only"
 
 import { APPWRITE_ENDPOINT, APPWRITE_PROJECT } from "@/config"
@@ -38,6 +38,9 @@ export async function createAdminClient() {
    return {
       get account() {
          return new Account(client)
+      },
+      get users() {
+         return new Users(client)
       }
    }
 }
