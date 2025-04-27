@@ -17,7 +17,6 @@ export const ProjectAvatar = ({
    className,
    fallbackClassName
 }: ProjectAvatarProps) => {
-   console.log(image)
    if (image) {
       return (
          <div

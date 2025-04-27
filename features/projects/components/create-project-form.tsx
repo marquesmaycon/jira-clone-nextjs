@@ -46,8 +46,6 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
       }
    })
 
-   console.log(form.formState.errors)
-
    const onSubmit = (data: CreateProjectSchema) => {
       const finalValues = {
          ...data,

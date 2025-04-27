@@ -87,10 +87,7 @@ export const UpdateWorkspaceForm = ({
 
       if (!confirmed) return
 
-      reset(
-         { param: { workspaceId: initialValues.$id } },
-         { onSuccess: () => router.refresh() }
-      )
+      reset({ param: { workspaceId: initialValues.$id } })
    }
 
    const onSubmit = (data: UpdateWorkspaceSchema) => {
@@ -102,9 +99,8 @@ export const UpdateWorkspaceForm = ({
       mutate(
          { form: finalValues, param: { workspaceId: initialValues.$id } },
          {
-            onSuccess: ({ data }) => {
+            onSuccess: () => {
                form.reset()
-               router.push(`/workspaces/${data.$id}`)
             }
          }
       )
