@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-// import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -31,7 +31,7 @@ type CreateProjectFormProps = {
 }
 
 export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
-   // const router = useRouter()
+   const router = useRouter()
    const workspaceId = useWorkspaceId()
    const { mutate, isPending } = useCreateProject()
 
@@ -56,8 +56,9 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
       mutate(
          { form: finalValues },
          {
-            onSuccess: () => {
+            onSuccess: ({ data }) => {
                form.reset()
+               router.push(`/workspaces/${workspaceId}/projects/${data.$id}`)
             }
          }
       )

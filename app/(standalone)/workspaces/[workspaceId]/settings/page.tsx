@@ -11,13 +11,11 @@ type PageProps = {
 }
 
 export default async function Page({ params }: PageProps) {
-   const { workspaceId } = await params
    const user = await getCurrent()
    if (!user) redirect("/sign-in")
 
+   const { workspaceId } = await params
    const initialValues = await getWorkspace({ workspaceId })
-
-   if (!initialValues) redirect(`/workspaces/${workspaceId}`)
 
    return (
       <div className="w-full lg:max-w-xl">
