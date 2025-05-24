@@ -40,7 +40,7 @@ const app = new Hono()
       })
 
       if (!member) {
-        return c.json({ message: "Unauthorized" }, 401)
+        return c.json({ error: "Unauthorized" }, 401)
       }
 
       const query = [
@@ -122,7 +122,7 @@ const app = new Hono()
       })
 
       if (!member) {
-        return c.json({ message: "Unauthorized" }, 401)
+        return c.json({ error: "Unauthorized" }, 401)
       }
 
       const highestPosTask = await databases.listDocuments(

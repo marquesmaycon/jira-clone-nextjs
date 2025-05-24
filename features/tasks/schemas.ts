@@ -10,3 +10,5 @@ export const createTaskSchema = z.object({
   assigneeId: z.string().trim().min(1, "Assignee ID is required"),
   description: z.string().trim().optional()
 })
+
+export type CreateTaskSchema = z.infer<typeof createTaskSchema>
