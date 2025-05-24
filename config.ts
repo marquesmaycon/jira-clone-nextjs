@@ -10,6 +10,7 @@ export const WORKSPACES_ID = process.env.NEXT_PUBLIC_APPWRITE_WORKSPACES!
 
 export const MEMBERS_ID = process.env.NEXT_PUBLIC_APPWRITE_MEMBERS!
 export const PROJECTS_ID = process.env.NEXT_PUBLIC_APPWRITE_PROJECTS!
+export const TASKS_ID = process.env.NEXT_PUBLIC_APPWRITE_TASKS!
 
 
 export const IMAGES_BUCKET_ID = process.env.NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET!

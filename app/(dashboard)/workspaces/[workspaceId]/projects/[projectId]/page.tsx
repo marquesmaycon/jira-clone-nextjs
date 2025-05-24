@@ -6,6 +6,7 @@ import { getCurrent } from "@/features/auth/queries"
 import { getProject } from "@/features/projects/queries"
 import { ProjectAvatar } from "@/features/projects/components/project-avatar"
 import { Button } from "@/components/ui/button"
+import { TaskViewSwitcher } from "@/features/tasks/components/task-view-switcher"
 
 export default async function Page({
    params
@@ -45,6 +46,8 @@ export default async function Page({
                </Button>
             </div>
          </div>
+
+         <TaskViewSwitcher />
       </div>
    )
 }
