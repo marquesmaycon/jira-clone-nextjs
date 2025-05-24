@@ -59,7 +59,7 @@
       "typescript": "^5"
    },
    "prettier": {
-      "tabWidth": 3,
+      "tabWidth": 2,
       "trailingComma": "none",
       "semi": false,
       "plugins": [
