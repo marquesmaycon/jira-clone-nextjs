@@ -6,7 +6,7 @@ import { DottedSeparator } from "./dotted-separator"
 import { Navigation } from "./navigation"
 import { WorkspaceSwitcher } from "./workspace-switcher"
 import { Projects } from "./projects"
-
+// TO DO => converter em um sidebar shadcn
 export const Sidebar = () => {
    return (
       <aside className="h-full w-full bg-neutral-100 p-4">

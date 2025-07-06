@@ -112,6 +112,7 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* TO DO => Adicionar cursor em buttons */
 @layer base {
   * {
     @apply border-border outline-ring/50;
