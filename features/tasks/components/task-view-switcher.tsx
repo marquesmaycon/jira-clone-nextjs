@@ -11,11 +11,19 @@ import { DottedSeparator } from "@/components/dotted-separator"
 import { useCreateTaskModal } from "../hooks/use-create-task-modal"
 import { useTasks } from "../api/use-task"
 import { DataFilters } from "./data-filters"
+import { useTaskFilters } from "../hooks/use-task-filters"
 
 export const TaskViewSwitcher = () => {
+  const [{ status, assigneeId, projectId, dueDate }] = useTaskFilters()
   const [view, setView] = useQueryState("task-view", { defaultValue: "table" })
   const workspaceId = useWorkspaceId()
-  const { data: tasks, isLoading } = useTasks({ workspaceId })
+  const { data: tasks, isLoading } = useTasks({
+    workspaceId,
+    projectId,
+    assigneeId,
+    status,
+    dueDate
+  })
   const { open } = useCreateTaskModal()
 
   return (

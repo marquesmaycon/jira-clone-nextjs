@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query"
 
 import { client } from "@/lib/rpc"
+import { TaskStatus } from "../types"
 
 type UseTasksProps = {
   workspaceId: string
   projectId?: string | null
-  status?: "open" | "closed" | "all" | null
+  status?: TaskStatus | null
   assigneeId?: string | null
   dueDate?: string | null
   search?: string | null

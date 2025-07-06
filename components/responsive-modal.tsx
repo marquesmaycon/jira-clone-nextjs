@@ -10,6 +10,7 @@ type ResponsiveModalProps = React.PropsWithChildren<{
   onOpenChange: (open: boolean) => void
 }>
 
+// TO DO => corrigir drawer com scroll bugado no mobile
 export const ResponsiveModal = ({
   open,
   onOpenChange,
