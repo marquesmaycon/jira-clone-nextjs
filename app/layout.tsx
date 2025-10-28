@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
 
 import "./globals.css"
+import "@/features/tasks/components/data-calendar.css"
 
 const inter = Inter({
    variable: "--font-inter",

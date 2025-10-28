@@ -8,6 +8,7 @@ import { useWorkspaceId } from "@/features/workspaces/hooks/user-workspace-id"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { DottedSeparator } from "@/components/dotted-separator"
+import { DataCalendar } from "@/features/tasks/components/data-calendar"
 
 import { useCreateTaskModal } from "../hooks/use-create-task-modal"
 import { useTasks } from "../api/use-tasks"
@@ -81,7 +82,7 @@ export const TaskViewSwitcher = () => {
               <DataKanban data={tasks?.documents ?? []} onChange={onKanbanChange} />
             </TabsContent>
             <TabsContent value="calendar" className="mt-0">
-              {JSON.stringify(tasks, null, 2)}
+              <DataCalendar data={tasks?.documents ?? []} />
             </TabsContent>
           </>
         )}
