@@ -1,6 +1,7 @@
-import React from "react"
 import { FolderIcon, ListCheck, UserIcon } from "lucide-react"
+import React from "react"
 
+import { DatePicker } from "@/components/date-picker"
 import {
   Select,
   SelectContent,
@@ -9,13 +10,12 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select"
-import { DatePicker } from "@/components/date-picker"
 import { useMembers } from "@/features/members/api/use-members"
 import { useProjects } from "@/features/projects/api/use-projects"
 import { useWorkspaceId } from "@/features/workspaces/hooks/user-workspace-id"
 
-import { TaskStatus } from "../types"
 import { useTaskFilters } from "../hooks/use-task-filters"
+import { TaskStatus } from "../types"
 
 type DataFiltersProps = {
   hideProjectFilter?: boolean
@@ -92,7 +92,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
           ))}
         </SelectContent>
       </Select>
-      <Select
+      {!hideProjectFilter && (<Select
         defaultValue={projectId ?? undefined}
         onValueChange={(v) => onProjectChange(v)}
       >
@@ -111,7 +111,7 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
             </SelectItem>
           ))}
         </SelectContent>
-      </Select>
+      </Select>)}
       <DatePicker
         placeholder="Due date"
         className="h-12 w-full lg:w-auto"
