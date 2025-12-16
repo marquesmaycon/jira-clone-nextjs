@@ -1,9 +1,9 @@
+import { Navbar } from "@/components/navbar"
+import { Sidebar } from "@/components/sidebar"
 import { CreateProjectModal } from "@/features/projects/components/create-project-modal"
 import { CreateTaskModal } from "@/features/tasks/components/create-task-modal"
 import { UpdateTaskModal } from "@/features/tasks/components/update-task-modal"
 import { CreateWorkspaceModal } from "@/features/workspaces/components/create-workspace-modal"
-import { Navbar } from "@/components/navbar"
-import { Sidebar } from "@/components/sidebar"
 
 export default function DashboardLayout({ children }: React.PropsWithChildren) {
   return (

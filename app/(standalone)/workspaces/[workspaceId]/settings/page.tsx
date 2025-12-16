@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation"
 
-import { UpdateWorkspaceForm } from "@/features/workspaces/components/update-workspace-form"
 import { getCurrent } from "@/features/auth/queries"
+import { UpdateWorkspaceForm } from "@/features/workspaces/components/update-workspace-form"
 import { getWorkspace } from "@/features/workspaces/queries"
 
 type PageProps = {

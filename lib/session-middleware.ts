@@ -1,8 +1,8 @@
 import "server-only"
 
-import { Account, Client, Databases, Models, Storage } from "node-appwrite"
-import { createMiddleware } from "hono/factory"
 import { getCookie } from "hono/cookie"
+import { createMiddleware } from "hono/factory"
+import { Account, Client, Databases, Models, Storage } from "node-appwrite"
 
 import { APPWRITE_ENDPOINT, APPWRITE_PROJECT } from "@/config"
 import { AUTH_COOKIE } from "@/features/auth/constants"
