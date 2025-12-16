@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation"
 import { RiAddCircleFill } from "react-icons/ri"
 
 import { useProjects } from "@/features/projects/api/use-projects"
+import { ProjectAvatar } from "@/features/projects/components/project-avatar"
+import { useCreateProjectModal } from "@/features/projects/hooks/use-create-project-modal"
 import { useWorkspaceId } from "@/features/workspaces/hooks/user-workspace-id"
 import { cn } from "@/lib/utils"
-import { useCreateProjectModal } from "@/features/projects/hooks/use-create-project-modal"
-import { ProjectAvatar } from "@/features/projects/components/project-avatar"
 
 export const Projects = () => {
    const pathname = usePathname()

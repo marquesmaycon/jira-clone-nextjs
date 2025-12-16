@@ -1,6 +1,7 @@
+import "server-only"
+
 import { cookies } from "next/headers"
 import { Account, Client, Databases, Users } from "node-appwrite"
-import "server-only"
 
 import { APPWRITE_ENDPOINT, APPWRITE_PROJECT } from "@/config"
 import { AUTH_COOKIE } from "@/features/auth/constants"

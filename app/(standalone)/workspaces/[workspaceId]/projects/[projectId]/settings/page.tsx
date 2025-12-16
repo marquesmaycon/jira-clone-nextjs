@@ -1,7 +1,8 @@
+import { redirect } from "next/navigation"
+
 import { getCurrent } from "@/features/auth/queries"
 import { UpdateProjectForm } from "@/features/projects/components/update-project-form"
 import { getProject } from "@/features/projects/queries"
-import { redirect } from "next/navigation"
 
 export default async function Page({
    params

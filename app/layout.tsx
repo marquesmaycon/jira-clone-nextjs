@@ -1,3 +1,6 @@
+import "./globals.css"
+import "@/features/tasks/components/data-calendar.css"
+
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
@@ -5,9 +8,6 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { QueryProvider } from "@/components/query-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
-
-import "./globals.css"
-import "@/features/tasks/components/data-calendar.css"
 
 const inter = Inter({
    variable: "--font-inter",

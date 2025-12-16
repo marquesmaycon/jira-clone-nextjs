@@ -1,11 +1,11 @@
-import React from "react"
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
+import React from "react"
 
 import { DottedSeparator } from "./dotted-separator"
 import { Navigation } from "./navigation"
-import { WorkspaceSwitcher } from "./workspace-switcher"
 import { Projects } from "./projects"
+import { WorkspaceSwitcher } from "./workspace-switcher"
 // TO DO => converter em um sidebar shadcn
 export const Sidebar = () => {
    return (
