@@ -1,119 +1,62 @@
 # Jira Clone Next.js
 
-Clone do Jira desenvolvido com Next.js para gerenciar workspaces, projetos, membros e tarefas em uma interface moderna de produtividade.
+Clone do Jira desenvolvido com Next.js para gerenciamento de tarefas e projetos, focado em organização de fluxos de trabalho, produtividade e experiência moderna de uso.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.1-000000?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript)](https://www.typescriptlang.org/)
-[![Hono](https://img.shields.io/badge/Hono-4.x-E36002)](https://hono.dev/)
-[![Appwrite](https://img.shields.io/badge/Appwrite-Backend-F02E65?logo=appwrite)](https://appwrite.io/)
-[![TanStack Query](https://img.shields.io/badge/TanStack_Query-5.x-FF4154?logo=react-query)](https://tanstack.com/query)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=plastic&logo=nextdotjs)
+![React](https://img.shields.io/badge/React-20232A?style=plastic&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=plastic&logo=typescript&logoColor=fff)
+![Hono](https://img.shields.io/badge/Hono-E36002?style=plastic&logo=hono&logoColor=fff)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=plastic&logo=tailwindcss&logoColor=fff)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=plastic&logo=tailwindcss&logoColor=fff)
+![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=plastic&logo=radixui&logoColor=fff)
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=plastic&logo=reactquery&logoColor=FFF)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=plastic&logo=zod&logoColor=fff)
 
 ## Sobre
 
-O Jira Clone Next.js é uma aplicação de gestão de projetos inspirada em ferramentas de produtividade como Jira e Linear. O projeto reúne autenticação, workspaces, membros, projetos e tarefas com diferentes visualizações para acompanhamento do fluxo de trabalho.
-
-Ele foi desenvolvido com foco em organização de features, rotas protegidas, consumo de API type-safe, formulários validados e componentes reutilizáveis.
+Clone do Jira desenvolvido com Next.js para gerenciamento de tarefas e projetos, focado em organização de fluxos de trabalho, produtividade e experiência moderna de uso.
 
 ## Funcionalidades
 
-- Cadastro e autenticação de usuários.
-- Criação e gerenciamento de workspaces.
-- Convite e entrada em workspace via código.
-- Gestão de membros.
-- Criação e organização de projetos.
-- Cadastro de tarefas com responsável, status, data e descrição.
-- Status de tarefa: backlog, todo, in progress, in review e done.
-- Visualizações em tabela, calendário, kanban e gráficos.
-- Upload de imagens para workspaces e projetos.
-- Filtros, busca e sincronização de dados com TanStack Query.
+- Gerenciamento de tarefas e projetos em formato inspirado no Jira.
+- Organizacao de fluxos de trabalho, membros e etapas.
+- Calendario, graficos e formularios para operacao diaria.
+- Interface responsiva para acompanhamento de produtividade.
 
 ## Stack
 
-- **Next.js 15** com App Router.
-- **React 19** e **TypeScript**.
-- **Hono** para rotas de API.
-- **Appwrite** para autenticação, banco e storage.
-- **TanStack Query** para cache e mutations.
-- **TanStack Table** para tabelas.
-- **React Hook Form** e **Zod** para formulários.
-- **Radix UI**, **Tailwind CSS** e **shadcn/ui** para interface.
-- **React Big Calendar**, **Recharts** e **@hello-pangea/dnd** para recursos avançados de UI.
-
-## Arquitetura
-
-```txt
-.
-├── app/                 # Rotas Next.js
-├── components/          # Componentes globais e UI
-├── features/
-│   ├── auth/
-│   ├── members/
-│   ├── projects/
-│   ├── tasks/
-│   └── workspaces/
-├── hooks/
-├── lib/                 # Appwrite, RPC e helpers
-└── config.ts            # Variáveis públicas de integração
-```
+- Next.js
+- React
+- TypeScript
+- Hono
+- TailwindCSS
+- Radix UI
+- TanStack Query
+- Zod
 
 ## Como executar
 
-### Pré-requisitos
-
-- Node.js 18 ou superior.
-- npm.
-- Projeto configurado no Appwrite.
-
-### Instalação
-
 ```bash
-git clone https://github.com/marquesmaycon/jira-clone-nextjs.git
-cd jira-clone-nextjs
 npm install
 npm run dev
 ```
 
-Crie um arquivo `.env.local` com as variáveis usadas em `config.ts`:
-
-```env
-NEXT_PUBLIC_APP_URL=
-NEXT_PUBLIC_APPWRITE_ENDPOINT=
-NEXT_PUBLIC_APPWRITE_PROJECT=
-NEXT_PUBLIC_APPWRITE_DATABASE=
-NEXT_PUBLIC_APPWRITE_WORKSPACES=
-NEXT_PUBLIC_APPWRITE_MEMBERS=
-NEXT_PUBLIC_APPWRITE_PROJECTS=
-NEXT_PUBLIC_APPWRITE_TASKS=
-NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET=
-```
-
-Depois acesse:
-
-```txt
-http://localhost:3000
-```
-
-## Scripts disponíveis
+## Scripts disponiveis
 
 ```bash
-npm run dev       # Inicia o servidor de desenvolvimento
-npm run build     # Gera build de produção
-npm run start     # Inicia o build gerado
-npm run lint      # Executa lint
-npm run lint:fix  # Corrige problemas de lint
+npm run dev
+npm run build
+npm run start
+npm run lint
 ```
 
-## Destaques técnicos
+## Destaques tecnicos
 
-- Separação por domínio em `features`.
-- API com Hono e validação por Zod.
-- Estado remoto gerenciado com TanStack Query.
-- Componentes acessíveis e reutilizáveis.
-- Fluxo completo de workspace, projetos, membros e tarefas.
-- Interface próxima de produto real, com múltiplas visualizações.
+- Aplicacao Next.js com arquitetura orientada a features.
+- Uso de Appwrite, Hono e TanStack Query na camada de dados.
+- Componentes ricos para calendario, graficos e formularios.
 
----
+## Autor
 
 <div align="center">
   <img src="https://github.com/marquesmaycon.png" width="100px" style="border-radius: 50%"/>
@@ -122,7 +65,8 @@ npm run lint:fix  # Corrige problemas de lint
   <br/>
   <br/>
 
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayconhenrique/)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjU2JyBoZWlnaHQ9JzI1NicgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSd4TWlkWU1pZCcgdmlld0JveD0nMCAwIDI1NiAyNTYnPjxwYXRoIGQ9J00yMTguMTIzIDIxOC4xMjdoLTM3LjkzMXYtNTkuNDAzYzAtMTQuMTY1LS4yNTMtMzIuNC0xOS43MjgtMzIuNC0xOS43NTYgMC0yMi43NzkgMTUuNDM0LTIyLjc3OSAzMS4zNjl2NjAuNDNoLTM3LjkzVjk1Ljk2N2gzNi40MTN2MTYuNjk0aC41MWEzOS45MDcgMzkuOTA3IDAgMCAxIDM1LjkyOC0xOS43MzNjMzguNDQ1IDAgNDUuNTMzIDI1LjI4OCA0NS41MzMgNTguMTg2bC0uMDE2IDY3LjAxM1pNNTYuOTU1IDc5LjI3Yy0xMi4xNTcuMDAyLTIyLjAxNC05Ljg1Mi0yMi4wMTYtMjIuMDA5LS4wMDItMTIuMTU3IDkuODUxLTIyLjAxNCAyMi4wMDgtMjIuMDE2IDEyLjE1Ny0uMDAzIDIyLjAxNCA5Ljg1MSAyMi4wMTYgMjIuMDA4QTIyLjAxMyAyMi4wMTMgMCAwIDEgNTYuOTU1IDc5LjI3bTE4Ljk2NiAxMzguODU4SDM3Ljk1Vjk1Ljk2N2gzNy45N3YxMjIuMTZaTTIzNy4wMzMuMDE4SDE4Ljg5QzguNTgtLjA5OC4xMjUgOC4xNjEtLjAwMSAxOC40NzF2MjE5LjA1M2MuMTIyIDEwLjMxNSA4LjU3NiAxOC41ODIgMTguODkgMTguNDc0aDIxOC4xNDRjMTAuMzM2LjEyOCAxOC44MjMtOC4xMzkgMTguOTY2LTE4LjQ3NFYxOC40NTRjLS4xNDctMTAuMzMtOC42MzUtMTguNTg4LTE4Ljk2Ni0xOC40NTMnIGZpbGw9JyNmZmYnLz48L3N2Zz4K)](https://www.linkedin.com/in/mayconhenrique/)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/marquesmaycon)
   [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:mayconmarquesh@gmail.com)
+  [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=flat-square&logo=whatsapp&logoColor=white)](https://wa.me/5544991173753)
 </div>
